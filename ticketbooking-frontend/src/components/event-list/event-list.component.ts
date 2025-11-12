@@ -21,12 +21,15 @@ export class EventListComponent implements OnInit{
   columns = ['name', 'remainingTickets', 'action'];
 
   ngOnInit(): void {
-    //this.load();
+    this.load();
   }
 
   openBooking(event: Event) {
     console.log("open booking dialog box");
-    const ref = this.dialog.open(BookDialogComponent, {data: event});
+    const ref = this.dialog.open(BookDialogComponent, 
+    {
+      data : {eventId: event.id}
+    });
     ref.afterClosed().subscribe(result => {
       if(result == 'booked'){
         this.load();

@@ -1,2 +1,8 @@
 table { width: 100%; margin-top: 1rem; }
-    th.mat-header-cell { font-weight: bold; }
+th.mat-header-cell { font-weight: bold; }
+
+.mat-custom-blue {
+  background-color: blue;
+  color: white; /* Set text color for contrast */
+}
+

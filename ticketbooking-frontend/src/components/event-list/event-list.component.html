@@ -1,0 +1,22 @@
+<table mat-table [dataSource]="events" class="mat-elevation-z8">
+    <ng-container matColumnDef = "name">
+        <th mat-header-cell *matHeaderCellDef>Event Name </th>
+        <td mat-cell *matCellDef="let e">{{e.name}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="remainingTickets">
+    <th mat-header-cell *matHeaderCellDef> Available Tickets </th>
+    <td mat-cell *matCellDef="let e"> {{e.remainingTickets}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Action </th>
+    <td mat-cell *matCellDef="let e">
+      <button mat-flat-button color="primary" (click) = "openBooking(e)">Book Tickets</button>
+    </td>
+  </ng-container>
+
+   <tr mat-header-row *matHeaderRowDef="columns"></tr>
+  <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+
+</table>

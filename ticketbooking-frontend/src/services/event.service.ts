@@ -15,7 +15,7 @@ export class EventService {
   }
 
   bookEvent(eventId : number, ticketCount : number){
-    return this.http.post(`/api/tickets/${eventId}/book?count=${ticketCount}`,{});
+    return this.http.post<Event>(`/api/tickets/${eventId}/book?count=${ticketCount}`,{});
   }
 
   getEventById(id : number) : Observable<Event>{

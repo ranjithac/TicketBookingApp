@@ -49,18 +49,32 @@ export class BookDialogComponent {
   }  
 
     bookTicket(){
-      if (!this.ticketCount || this.ticketCount <= 0 || !this.eventObjById) return;
+      if (!this.ticketCount || this.ticketCount <= 0 || !this.eventObjById) {
+        this.snack.open("Please enter a valid ticket count", "Close", {duration: 2000});
+        return;
+      };
       this.loading = true;
       this.eventService.bookEvent(this.eventObjById.id, this.ticketCount).subscribe({
-        next :() => {
+        next :(updatedEvent : Event) => {
           this.loading = false;
-          this.snack.open("Event Booked Successfully", "Ok", {duration: 2000});
+          this.snack.open(`Successfully booked ${this.ticketCount} tickets(s) ${updatedEvent.remainingTickets} remaining`, "Ok", {duration: 3000});
           this.dialogRef.close('booked');
         },
         error: (err) => {
           this.loading = false;
-          const msg = err?.error?.message || (err?.status === 409 ? 'Not enough tickets' : 'Booking failed');
+          let msg = 'Booking failed';
+
+          if(err.status === 400 || err.status === 404 ||  err.status === 409){
+            msg = err.error?.message;
+          }else{
+            msg = err.error?.message || "Booking failed. Please try again";
+          }
+
           this.snack.open(msg, 'Close', { duration: 3000 });
+
+          if(err.status === 400 || err.status === 409){
+            this.loadEventDetails();
+          }
         }
       });
     }

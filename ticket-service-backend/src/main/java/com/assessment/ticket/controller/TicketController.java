@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.assessment.ticket.model.Event;
@@ -41,13 +42,22 @@ public class TicketController {
 	@PostMapping
 	public ResponseEntity<Event> createEvents(@RequestBody Event event){
 		log.info(" Inside createEvents");
-		Event savedEvent = ticketService.saveEvent(event);
-		return new ResponseEntity<Event>(savedEvent, HttpStatus.OK);
+		Event dbEvent = ticketService.saveEvent(event);
+		return new ResponseEntity<Event>(dbEvent, HttpStatus.OK);
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> getEventById(@PathVariable Long id){
 		Event event = ticketService.getEvent(id);
 		return new ResponseEntity<Object>(new ResponseUtil().buildAndReturnResponse("Event details fetched successfully", event, "success"), HttpStatus.OK);
+	}
+	
+	@PostMapping("/{id}/book")
+	public ResponseEntity<Event> bookTickets(@PathVariable Long id, @RequestParam int count){
+		log.info(" Booking Request: event is "+id + ", tickets to book : "+count);
+		
+		Event updatedEvent = ticketService.bookTickets(id, count);
+		
+		return new ResponseEntity<>(updatedEvent, HttpStatus.OK);
 	}
 }

@@ -14,6 +14,9 @@ public class Event {
 	
 	private int remainingTickets;
 	
+	@Version
+	private Long version;
+	
 	
 	public Long getId() {
 		return id;
@@ -32,6 +35,12 @@ public class Event {
 	}
 	public void setRemainingTickets(int remainingTickets) {
 		this.remainingTickets = remainingTickets;
+	}
+	public Long getVersion() {
+		return version;
+	}
+	public void setVersion(Long version) {
+		this.version = version;
 	}
 	
 	

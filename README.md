@@ -4,11 +4,13 @@ A Concurrent Ticket Booking Application built using Spring Boot (Java 17) and An
 
 **Project Structure**
 
+```
 TicketBookingApp/
 │
 ├── ticket-service-backend/ 
 │
 └── ticketbooking-frontend/
+```
 
 **Backend (Spring Boot)**
 
@@ -28,24 +30,27 @@ TicketBookingApp/
 
 **Backend Setup**
 
-**Prerequisites**
+### Prerequisites
 
-Requirement	    Version/Notes
-Java	          17
-Maven	          3.8
-Port	          8080
+| Requirement  | Version / Notes|
+|--------------|----------------|
+| Java         | 17+            |
+| Maven        | 3.8+           |
+| Port         | 8080           |
 
 Steps to Run
-----------------
-1. cd ticket-service-backend  2. mvn clean install 3. mvn spring-boot:run
+------------
+1. cd ticket-service-backend  2. mvn clean install  3. mvn spring-boot:run
 
 **Frontend Setup**
-**Prerequisites**
 
-Requirement	    Version/Notes
-Node.js	        18+
-Angular CLI	    20+
-Port            4200
+### Prerequisites
+
+| Requirement  | Version / Notes|
+|--------------|----------------|
+| Node.js      | 18+            |
+| Angular CLI  | 20+            | 
+| Port         | 4200           |  
 
 Steps to run
 -------------
